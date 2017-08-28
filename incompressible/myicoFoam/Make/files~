@@ -1,3 +1,0 @@
-myicoFoam.C
-
-EXE = $(FOAM_APPBIN)/myicoFoam
