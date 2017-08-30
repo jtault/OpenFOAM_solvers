@@ -61,8 +61,7 @@ int main(int argc, char *argv[])
       {
 	runTime++;
 	Info<< "Time = " << runTime.timeName() << nl << endl;
-	#include "CsaltEqn.H"
-	#include "CpartEqn.H"
+        #include "CpartEqn.H"
 	runTime.write();
 	Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
 	    << "  ClockTime = " << runTime.elapsedClockTime() << " s"

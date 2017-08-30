@@ -73,20 +73,22 @@ int main(int argc, char *argv[])
           Info<< "Time = " << runTime.timeName() << nl << endl;
 
           #include "CsaltEqn.H"
-
+          CsaltGrad = fvc::grad(Csalt);
+          
           runTime.write();
 
           Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
               << "  ClockTime = " << runTime.elapsedClockTime() << " s"
               << nl << endl;
         }
-
+        
         // SOLVE THE FLOW FIELD
         while (true)
           {
             volVectorField Old_U = U;
             // --- Pressure-velocity SIMPLE corrector
             #include "UEqn.H"
+	    p.storePrevIter();
             #include "pEqn.H"
 	    laminarTransport.correct();
             turbulence->correct();
@@ -101,7 +103,7 @@ int main(int argc, char *argv[])
               }
             ++myCounter;
           }
-
+        
         myCounter = 1;
       }
 

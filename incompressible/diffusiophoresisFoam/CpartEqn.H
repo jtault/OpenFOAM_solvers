@@ -1,25 +1,14 @@
 while (simple.correctNonOrthogonal())
 {
-    fvScalarMatrix CsaltEqn
-    (
-       fvm::ddt(Csalt)
-       +fvm::div(phi,Csalt)
-       -fvm::laplacian(Dsalt,Csalt)
-    );
-
-    CsaltEqn.relax();
-    fvOptions.constrain(CsaltEqn);
-    CsaltEqn.solve();
-    fvOptions.correct(Csalt);
 
     // Particle 1
-    volVectorField U_New = U + gammap1/Csalt*fvc::grad(Csalt);
-    surfaceScalarField phiNew = linearInterpolate(U_New) & mesh.Sf();
+    volVectorField U_New1 = U + gammap1/Csalt*fvc::grad(Csalt);
+    surfaceScalarField phiNew1 = linearInterpolate(U_New1) & mesh.Sf();
 
     fvScalarMatrix Cpart1Eqn
     (
        fvm::ddt(Cpart1)
-       +fvm::div(phiNew,Cpart1)
+       +fvm::div(phiNew1,Cpart1)
        -fvm::laplacian(Dpart1,Cpart1)
     );
 
@@ -29,13 +18,13 @@ while (simple.correctNonOrthogonal())
     fvOptions.correct(Cpart1);
 
     // Particle 2
-    U_New = U + gammap2/Csalt*fvc::grad(Csalt);
-    phiNew = linearInterpolate(U_New) & mesh.Sf();
+    volVectorField U_New2 = U + gammap2/Csalt*fvc::grad(Csalt);
+    surfaceScalarField phiNew2 = linearInterpolate(U_New2) & mesh.Sf();
 
     fvScalarMatrix Cpart2Eqn
     (
        fvm::ddt(Cpart2)
-       +fvm::div(phiNew,Cpart2)
+       +fvm::div(phiNew2,Cpart2)
        -fvm::laplacian(Dpart2,Cpart2)
     );
 
@@ -45,13 +34,13 @@ while (simple.correctNonOrthogonal())
     fvOptions.correct(Cpart2);
 
     // Particle 3
-    U_New = U + gammap3/Csalt*fvc::grad(Csalt);
-    phiNew = linearInterpolate(U_New) & mesh.Sf();
+    volVectorField U_New3 = U + gammap3/Csalt*fvc::grad(Csalt);
+    surfaceScalarField phiNew3 = linearInterpolate(U_New3) & mesh.Sf();
 
     fvScalarMatrix Cpart3Eqn
     (
        fvm::ddt(Cpart3)
-       +fvm::div(phiNew,Cpart3)
+       +fvm::div(phiNew3,Cpart3)
        -fvm::laplacian(Dpart3,Cpart3)
     );
 
@@ -61,13 +50,13 @@ while (simple.correctNonOrthogonal())
     fvOptions.correct(Cpart3);
 
     // Particle 4
-    U_New = U + gammap4/Csalt*fvc::grad(Csalt);
-    phiNew = linearInterpolate(U_New) & mesh.Sf();
+    volVectorField U_New4 = U + gammap4/Csalt*fvc::grad(Csalt);
+    surfaceScalarField phiNew4 = linearInterpolate(U_New4) & mesh.Sf();
 
     fvScalarMatrix Cpart4Eqn
     (
        fvm::ddt(Cpart4)
-       +fvm::div(phiNew,Cpart4)
+       +fvm::div(phiNew4,Cpart4)
        -fvm::laplacian(Dpart4,Cpart4)
     );
 
@@ -77,13 +66,13 @@ while (simple.correctNonOrthogonal())
     fvOptions.correct(Cpart4);
 
     // Particle 5
-    U_New = U + gammap5/Csalt*fvc::grad(Csalt);
-    phiNew = linearInterpolate(U_New) & mesh.Sf();
+    volVectorField U_New5 = U + gammap5/Csalt*fvc::grad(Csalt);
+    surfaceScalarField phiNew5 = linearInterpolate(U_New5) & mesh.Sf();
 
     fvScalarMatrix Cpart5Eqn
     (
        fvm::ddt(Cpart5)
-       +fvm::div(phiNew,Cpart5)
+       +fvm::div(phiNew5,Cpart5)
        -fvm::laplacian(Dpart5,Cpart5)
     );
 
@@ -91,4 +80,5 @@ while (simple.correctNonOrthogonal())
     fvOptions.constrain(Cpart5Eqn);
     Cpart5Eqn.solve();
     fvOptions.correct(Cpart5);
+
 }
