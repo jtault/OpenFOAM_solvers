@@ -16,7 +16,7 @@ while (simple.correctNonOrthogonal())
     fvOptions.constrain(Cpart1Eqn);
     Cpart1Eqn.solve();
     fvOptions.correct(Cpart1);
-
+    /*    
     // Particle 2
     volVectorField U_New2 = U + gammap2/Csalt*fvc::grad(Csalt);
     surfaceScalarField phiNew2 = linearInterpolate(U_New2) & mesh.Sf();
@@ -80,5 +80,5 @@ while (simple.correctNonOrthogonal())
     fvOptions.constrain(Cpart5Eqn);
     Cpart5Eqn.solve();
     fvOptions.correct(Cpart5);
-
+    */
 }
